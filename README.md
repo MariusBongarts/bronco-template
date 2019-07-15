@@ -31,33 +31,25 @@ Left sidebar. To include icons following has to be included in index.html  => <l
 
 ### Properties
 
-| Property       | Type          | Default      | Description                                      |
-|----------------|---------------|--------------|--------------------------------------------------|
-| `dragBtn`      | `HTMLElement` | **required** |                                                  |
-| `hideOnMobile` | `boolean`     | true         | Makes the navbar disappear on mobile devices     |
-| `mobile`       | `boolean`     | false        | If true, either navbar is completely hidden, when hideOnMobile = true or only leftHeader and rightHeader are shown |
-| `navItems`     | `string[]`    |              | Takes an array to set (minimum: 3, maximum 5) nav items, of this component |
-| `selectedItem` | `string`      | "Components" | Sets selected item. Default is first item        |
-| `sideBar`      | `HTMLElement` | **required** |                                                  |
-
-### Events
-
-| Event      | Description                                      |
-|------------|--------------------------------------------------|
-| `selected` | Dispatches a CustomEvent when nav item is selected. Selected item is stored in detail of Custom event |
+| Property  | Type      | Default | Description              |
+|-----------|-----------|---------|--------------------------|
+| `hideNav` | `boolean` | false   |                          |
+| `mobile`  | `boolean` | false   | Boolean if mobile device |
 
 ### CSS Custom Properties
 
-| Property                | Description                         |
-|-------------------------|-------------------------------------|
-| `--bg-color`            | Background color of navitem         |
-| `--bg-color-hover`      | Hover background color of navItem   |
-| `--bg-color-icon-hover` | Hover color of icon                 |
-| `--color`               | Font color                          |
-| `--padding-top`         | Defines where navItems should begin |
-| `--primary-color`       | Change primary color easily         |
-| `--sidebar-min-height`  | Sidebar min height. Default: 20%    |
-| `--sidebar-width`       | Sidebar width. Default: 20%;        |
+| Property      | Description                           |
+|---------------|---------------------------------------|
+| `--bg`        | Defines the background                |
+| `--nav-width` | Defines the width of the left nav bar |
+
+### Slots
+
+| Name     | Description              |
+|----------|--------------------------|
+| `header` | Slot to set header bar   |
+| `main`   | Slot to set main content |
+| `nav`    | Slot to set left nav bar |
 
 
 
