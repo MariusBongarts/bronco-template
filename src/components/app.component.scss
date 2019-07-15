@@ -1,0 +1,54 @@
+@import './../icons.scss';
+
+:host {
+  --bg-color: white;
+  --bg-color-hover: rgba(233, 233, 233, 0.13);
+  --bg-color-icon-hover: black;
+  --color: grey;
+  --padding-top: 10vh;
+  --primary-color: rgb(29, 202, 255);
+  --sidebar-width: 20%;
+  --sidebar-min-height: 100vh;
+}
+
+.grid-container {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0px;
+  display: grid;
+  grid:
+    "head head"  2.5em
+    "nav  main"  1fr
+    /15em 1fr;
+  height: 100vh;
+  grid-gap: .1em;
+}
+
+/* All Grid Items */
+.grid-container > * {
+  // font-size: 50px;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  background: #FFD200;
+}
+
+header {
+  grid-area: head;
+}
+
+nav {
+  grid-area: nav;
+}
+
+main {
+  grid-area: main;
+}
+
+footer {
+  grid-area: foot;
+}
+
+aside {
+  grid-area: side;
+}
+
