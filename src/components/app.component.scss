@@ -1,35 +1,46 @@
-@import './../icons.scss';
+@import "./../icons.scss";
 
 :host {
-  --bg-color: white;
-  --bg-color-hover: rgba(233, 233, 233, 0.13);
-  --bg-color-icon-hover: black;
-  --color: grey;
-  --padding-top: 10vh;
-  --primary-color: rgb(29, 202, 255);
-  --sidebar-width: 20%;
-  --sidebar-min-height: 100vh;
+  --bg: none;
+  --nav-width: 20em;
 }
 
 .grid-container {
-  font-family: 'Open Sans', sans-serif;
   margin: 0px;
   display: grid;
-  grid:
-    "head head"  2.5em
-    "nav  main"  1fr
-    /15em 1fr;
   height: 100vh;
-  grid-gap: .1em;
+  width: 100vw;
+  grid:
+    "head" 5em
+    "main" 1fr
+    "nav" 5em
+    /1fr;
 }
+
+@media only screen and (min-width: 928px) {
+  .grid-container {
+    grid:
+      "nav head" 2.5em
+      "nav  main" 1fr
+      / var(--nav-width) 1fr;
+  }
+
+  .hideNav {
+    grid:
+      "head" 2.5em
+      "main" 1fr
+      / 1fr;
+    nav {
+      display: none;
+    }
+  }
+}
+
+
 
 /* All Grid Items */
 .grid-container > * {
-  // font-size: 50px;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  background: #FFD200;
+  background: var(--bg-color);
 }
 
 header {
@@ -38,17 +49,37 @@ header {
 
 nav {
   grid-area: nav;
+
+}
+
+nav > * {
+  width: inherit;
 }
 
 main {
   grid-area: main;
 }
 
-footer {
-  grid-area: foot;
+
+#drag {
+  position: fixed;
+  left: calc(var(--nav-width) - 1.7em);
+  top: 40vh;
+  z-index: 9999;
+  cursor: pointer;
+  user-select: none;
 }
 
-aside {
-  grid-area: side;
+.hideNav {
+  left: -10px !important;
 }
 
+#drag i {
+  font-size: 50px;  /* Preferred icon size */
+  color:var(--color);
+}
+
+#drag i:hover {
+  font-size: 50px;  /* Preferred icon size */
+  color: black;
+}
