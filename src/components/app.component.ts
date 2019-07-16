@@ -1,4 +1,6 @@
+import { SwipeDetector } from './../helper/swipeDetector';
 import { css, customElement, html, LitElement, property, unsafeCSS, query } from 'lit-element';
+import { Swipe } from '../types/swipe';
 
 const componentCSS = require('./app.component.scss');
 
@@ -14,6 +16,8 @@ const componentCSS = require('./app.component.scss');
 export class BroncoTemplate extends LitElement {
 
   static styles = css`${unsafeCSS(componentCSS)}`;
+
+  swipeDetector = new SwipeDetector();
 
   @property()
   hideNav = false;
@@ -33,6 +37,13 @@ export class BroncoTemplate extends LitElement {
       if (window.innerWidth >= 928) this.mobile = false;
     });
     this.mobile ? this.hideNav = true : this.hideNav = false;
+
+    this.swipeDetector.subscribe((swipe: Swipe) => {
+      this.hideNav = true;
+      console.log(this.hideNav);
+      if(swipe === 'swipeRight') this.hideNav = false;
+      if(swipe === 'swipeLeft') this.hideNav = true;
+    });
   }
 
   render() {
@@ -49,7 +60,7 @@ export class BroncoTemplate extends LitElement {
       </main>
     </div>
     <div id="drag" class="${this.hideNav ? 'hideNav' : ''}" @click=${()=> this.hideNav ? this.hideNav = false :
-    this.hideNav = true}>
+          this.hideNav = true}>
       <i class="material-icons">${this.hideNav ? 'keyboard_arrow_right' : 'keyboard_arrow_left'}</i>
     </div>
 `;
