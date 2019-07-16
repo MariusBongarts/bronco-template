@@ -32,11 +32,12 @@ export class BroncoTemplate extends LitElement {
       if (window.innerWidth < 928) this.mobile = true;
       if (window.innerWidth >= 928) this.mobile = false;
     });
+    this.mobile ? this.hideNav = true : this.hideNav = false;
   }
 
   render() {
     return html`
-    <div class="grid-container ${this.hideNav ? 'hideNav' : ''}">
+    <div class="grid-container ${this.hideNav ? '' : 'open'} ${this.hideNav ? 'hideNav' : ''}">
       <header>
         <slot name="header"></slot>
       </header>
@@ -47,12 +48,10 @@ export class BroncoTemplate extends LitElement {
         <slot name="main"></slot>
       </main>
     </div>
-    ${!this.mobile ? html`
-    <div id="drag" class="${this.hideNav ? 'hideNav' : ''}" @click=${() => this.hideNav ? this.hideNav = false :
-          this.hideNav = true}>
+    <div id="drag" class="${this.hideNav ? 'hideNav' : ''}" @click=${()=> this.hideNav ? this.hideNav = false :
+    this.hideNav = true}>
       <i class="material-icons">${this.hideNav ? 'keyboard_arrow_right' : 'keyboard_arrow_left'}</i>
     </div>
-    ` : ''}
 `;
   }
 }
