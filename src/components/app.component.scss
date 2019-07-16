@@ -2,18 +2,19 @@
 
 :host {
   --bg: none;
-  --nav-width: 20em;
+  --nav-width: 15em;
+  --color-icon: rgb(177, 177, 177);
 }
 
 .grid-container {
-  margin: 0px;
+  margin: 0;
+  padding: 0;
   display: grid;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   grid:
     "head" 5em
     "main" 1fr
-    "nav" 5em
     /1fr;
 }
 
@@ -76,10 +77,11 @@ main {
 
 #drag i {
   font-size: 50px;  /* Preferred icon size */
-  color:var(--color);
+  color:var(--color-icon);
 }
 
 #drag i:hover {
   font-size: 50px;  /* Preferred icon size */
   color: black;
 }
+
