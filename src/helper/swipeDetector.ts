@@ -24,10 +24,10 @@ export class SwipeDetector {
     window.addEventListener('touchend', (e: TouchEvent) => {
       this.clientXEnd = e.changedTouches[0].clientX;
       const diff = this.clientXStart - this.clientXEnd;
-      if (diff <= -80) {
+      if (diff <= -50) {
         this.notifyListeners('swipeRight');
       }
-      if (diff >= 80) {
+      if (diff >= 50) {
         this.notifyListeners('swipeLeft');
       }
     });

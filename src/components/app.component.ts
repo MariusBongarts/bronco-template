@@ -41,8 +41,8 @@ export class BroncoTemplate extends LitElement {
     this.swipeDetector.subscribe((swipe: Swipe) => {
       this.hideNav = true;
       console.log(this.hideNav);
-      if(swipe === 'swipeRight') this.hideNav = false;
-      if(swipe === 'swipeLeft') this.hideNav = true;
+      if (swipe === 'swipeRight') this.hideNav = false;
+      if (swipe === 'swipeLeft') this.hideNav = true;
     });
   }
 
