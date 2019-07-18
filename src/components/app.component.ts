@@ -11,6 +11,9 @@ const componentCSS = require('./app.component.scss');
  * @slot main - Slot to set main content
  * @cssprop --bg - Defines the background
  * @cssprop --nav-width - Defines the width of the left nav bar
+ * @cssprop --shadow-header - Defines shadow of the header
+ * @cssprop --shadow-nav - Defines shadow of the nav
+ *
  */
 @customElement('bronco-template')
 export class BroncoTemplate extends LitElement {
@@ -33,10 +36,15 @@ export class BroncoTemplate extends LitElement {
   firstUpdated() {
     if (window.innerWidth < 928) this.mobile = true;
     window.addEventListener('resize', () => {
-      if (window.innerWidth < 928) this.mobile = true;
-      if (window.innerWidth >= 928) this.mobile = false;
+      if (window.innerWidth < 928) {
+        this.mobile = true;
+        this.hideNav = true;
+      }
+      if (window.innerWidth >= 928) {
+        this.mobile = false;
+        this.hideNav = false;
+      }
     });
-    this.mobile ? this.hideNav = true : this.hideNav = false;
 
     this.swipeDetector.subscribe((swipe: Swipe) => {
       this.hideNav = true;
@@ -61,7 +69,12 @@ export class BroncoTemplate extends LitElement {
     </div>
     <div id="drag" class="${this.hideNav ? 'hideNav' : ''}" @click=${()=> this.hideNav ? this.hideNav = false :
           this.hideNav = true}>
-      <i class="material-icons">${this.hideNav ? 'keyboard_arrow_right' : 'keyboard_arrow_left'}</i>
+      ${this.hideNav ? html`
+      <bronco-icon class="material-icons" iconName='keyboard_arrow_right'></bronco-icon>
+      ` : html`
+      <bronco-icon class="material-icons" iconName='keyboard_arrow_left'></bronco-icon>
+      `}
+
     </div>
 `;
   }

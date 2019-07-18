@@ -2,8 +2,11 @@
 
 :host {
   --bg: none;
+  --header-height: 2.5em;
   --nav-width: 15em;
   --color-icon: rgb(177, 177, 177);
+  --shadow-header: 0 8px 8px -8px rgba(128, 128, 128, 0.322);
+  --shadow-nav: 0px 8px 8px rgba(128, 128, 128, 0.322);
 }
 
 .grid-container {
@@ -26,7 +29,7 @@
   height: 100%;
   width: 100%;
   grid:
-  "nav head" 2.5em
+  "nav head" var(--header-height)
   "nav  main" 1fr
   / var(--nav-width) 1fr;
 }
@@ -34,14 +37,14 @@
 @media only screen and (min-width: 928px) {
   .grid-container {
     grid:
-      "nav head" 2.5em
+      "nav head" var(--header-height)
       "nav  main" 1fr
       / var(--nav-width) 1fr;
   }
 
   .hideNav {
     grid:
-      "head" 2.5em
+      "head" var(--header-height)
       "main" 1fr
       / 1fr;
     nav {
@@ -50,8 +53,6 @@
   }
 }
 
-
-
 /* All Grid Items */
 .grid-container > * {
   background: var(--bg-color);
@@ -59,20 +60,34 @@
 
 header {
   grid-area: head;
+  box-shadow: var(--shadow-header);
 }
+
+header > ::slotted(*):nth-child(1) {
+  position: relative;
+  height: 100%;
+  line-height: var(--header-height);
+}
+
 
 nav {
   grid-area: nav;
+  box-shadow: var(--shadow-nav);
 }
 
-nav > * {
-  width: inherit;
+nav > ::slotted(*) {
+  min-height: 100vh;
 }
 
 main {
   grid-area: main;
 }
 
+
+
+main > ::slotted(*) {
+  min-height: 100vh;
+}
 
 #drag {
   position: fixed;
@@ -87,16 +102,15 @@ main {
   left: -10px !important;
 }
 
-#drag i {
+#drag bronco-icon {
   font-size: 50px;  /* Preferred icon size */
-  color:var(--color-icon);
+  --color:var(--color-icon);
   background: white;
   border-radius: 50%;
   box-shadow: 0px 8px 8px rgba(128, 128, 128, 0.212);
 }
 
-#drag i:hover {
+#drag bronco-icon:hover {
   font-size: 50px;  /* Preferred icon size */
-  color: black;
+  --color: black;
 }
-
